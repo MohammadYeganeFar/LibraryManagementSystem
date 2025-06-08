@@ -27,7 +27,7 @@ class Book(models.Model):
         (BORROWED, 'Borrowed')
     ]
     title = models.TextField()
-    author = models.ManyToManyField(Author)
+    authors = models.ManyToManyField(Author, related_name='books')
     publication_date = models.DateField(auto_now_add=True, null=True, blank=True)
     ISBN = models.IntegerField()
     status = models.CharField(max_length=1, choices=STATUS_SHOICES, default=AVAILABLE)
