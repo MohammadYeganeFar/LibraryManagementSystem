@@ -6,6 +6,9 @@ class Author(models.Model):
     bio = models.TextField(null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class Member(models.Model):
     name = models.CharField(max_length=100)
@@ -13,6 +16,8 @@ class Member(models.Model):
     phone = models.CharField(max_length=11)
     age = models.IntegerField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return self.name
     
 class Book(models.Model):
     AVAILABLE = 'A'
@@ -26,11 +31,16 @@ class Book(models.Model):
     publication_date = models.DateField(auto_now_add=True, null=True, blank=True)
     ISBN = models.IntegerField()
     status = models.CharField(max_length=1, choices=STATUS_SHOICES, default=AVAILABLE)
-
+    
+    def __str__(self) -> str:
+        return self.title
 
 class BorrowedBook(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     loan_date = models.DateField(auto_now_add=True)
     return_date = models.DateField()
+    
+    def __str__(self) -> str:
+        return self.book.title 
 
