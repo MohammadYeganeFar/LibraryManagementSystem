@@ -3,15 +3,15 @@ from django.db import models
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
-    bio = models.TextField()
-    age = models.IntegerField()
+    bio = models.TextField(null=True, blank=True)
+    age = models.IntegerField(null=True, blank=True)
 
 
 class Member(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
     phone = models.CharField(max_length=11)
-    age = models.IntegerField()
+    age = models.IntegerField(null=True, blank=True)
 
     
 class Book(models.Model):
