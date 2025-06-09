@@ -4,10 +4,10 @@ from library import models as lib_models
 class MemberSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=100)
-    email = serializers.EmailField(required=False, allow_blank=True)
+    email = serializers.EmailField(required=False, allow_blank=True, default='')
     phone = serializers.CharField(max_length=11)
-    age = serializers.IntegerField(required=False)                    
-
+    age = serializers.IntegerField(required=False, default='')                    
+   
     def create(self, validated_data):
         return lib_models.Member.objects.create(**validated_data)
     
