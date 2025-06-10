@@ -10,7 +10,7 @@ from library import serializers
 
 
 @api_view(['GET', 'POST'])
-def member_list(request):
+def member_list(request, format=None):
     if request.method == 'GET':
         members = lib_models.Member.objects.all()
         serializer = serializers.MemberSerializer(members, many=True)
@@ -24,7 +24,7 @@ def member_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def member_detail(request, pk):
+def member_detail(request, pk, format=None):
     """
     Retrive, update or delete a member.
     """
