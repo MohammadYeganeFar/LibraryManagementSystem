@@ -4,8 +4,8 @@ from library import views
 
 
 urlpatterns = [
-    path('members/', views.member_list, name='member_list'),
-    path('members/<int:pk>/', views.member_detail, name='member_dateil')
+    path('members/', views.MemberList.as_view(), name='member_list'),
+    path('members/<int:pk>/', views.MemberDetail.as_view(), name='member_dateil')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
