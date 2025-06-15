@@ -26,3 +26,12 @@ class MemberViewSet(viewsets.ModelViewSet):
     def fullname(self, request, pk, *args, **kwargs):
         member = self.get_object() # instead of Member.objects.get(pk=pk)
         return Response(member.name)
+
+class AuthorViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provide these oprations:
+        * list
+        * retrive
+    """
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
