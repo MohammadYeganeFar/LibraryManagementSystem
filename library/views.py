@@ -6,8 +6,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework import viewsets
-from library.models import Member, Author
-from library.serializers import MemberSerializer, AuthorSerializer
+from library.models import Member, Author, Book
+from library.serializers import (
+    MemberSerializer,
+    AuthorSerializer,
+    BookSerializer
+    )
 
 
 class MemberViewSet(viewsets.ModelViewSet):
@@ -15,7 +19,7 @@ class MemberViewSet(viewsets.ModelViewSet):
     This viewset automatically provide these oprations:
         * list
         * create
-        * retrive
+        * retrieve
         * update
         * destroy
     """
@@ -29,9 +33,14 @@ class MemberViewSet(viewsets.ModelViewSet):
 
 class AuthorViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    This viewset automatically provide these oprations:
+    This viewset automatically provide these operations:
         * list
         * retrive
     """
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
